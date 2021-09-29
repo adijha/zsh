@@ -30,7 +30,8 @@ function gitpush() {
     then
         git commit -m "$1"
     else
-        git commit -m update # default commit message is `update`
+        print $fg_bold[red] "Commit message to likh lo"
+        return 0
     fi # closing statement of if-else block
     git push origin HEAD
 }
@@ -42,7 +43,8 @@ function gitnew() {
     then
         git checkout -b "$1"
     else
-        print "Branch name to likh lo"
+        print $fg_bold[red] "Branch name to likh lo"
+        return 0
     fi # closing statement of if-else block
 }
 
@@ -53,6 +55,7 @@ function npmnew() {
         mkdir "$1"
     else
         print $fg_bold[red] "Project name to likh lo"
+        return 0
     fi # closing statement of if-else block
     cd "$1"
 
@@ -62,15 +65,17 @@ function npmnew() {
 
     git commit -m "initial commit"
     git branch -M master
-    git remote add origin https://github.com/adijha/$1.git
-
-    if["$2" !=""]
+    
+    if [ "$2" != "" ]
     then
-        print $fg_bold[green] "Local setup done"
+        print $fg_bold[yellow] "Doing Remote Setup"
+        gh repo create "$1" -y --public
     else
-        gh repo create $2
-        git push origin head
-    fi
+        print $fg_bold[yellow] "Local setup done"
+        return 0
+    fi # closing statement of if-else block
+    git push -u origin master
+    print $fg_bold[green] "SUCCESS-> Done Remote Setup"
 }
 
 
@@ -165,4 +170,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
 ```
