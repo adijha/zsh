@@ -1,7 +1,7 @@
 ZSHRC config and aliases are in .zshrc file
 
 ## Here are some BASH FUNCTIONS for git
-
+```
 function gitpush() {
     git add .
     if [ "$1" != "" ]
@@ -13,7 +13,8 @@ function gitpush() {
     fi # closing statement of if-else block
     git push origin HEAD
 }
-
+```
+```
 function gitnew() {
     git checkout master
     git pull
@@ -26,7 +27,8 @@ function gitnew() {
     fi # closing statement of if-else block
 }
 
-
+```
+```
 function npmnew() {
     if [ "$1" != "" ]
     then
@@ -57,3 +59,4 @@ function npmnew() {
     git push -u origin master
     print $fg_bold[green] "SUCCESS-> Done Remote Setup"
 }
+```
