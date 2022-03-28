@@ -14,6 +14,14 @@ function gitpush() {
     git push origin HEAD
 }
 ```
+You can use this as
+`$ gitpush your-commit-message`
+and it will run following commands in order
+```
+git add .
+git commit -m your-commit-message
+git push origin head
+```
 ```
 function gitnew() {
     git checkout master
@@ -28,13 +36,21 @@ function gitnew() {
 }
 
 ```
+
+You can use this as
+`$ gitnew your-new-branch-name`
+and it will run following commands in order
+```
+git checkout master
+git pull origin master
+git checkout -b your-new-branch-name
 ```
 function npmnew() {
     if [ "$1" != "" ]
     then
         mkdir "$1"
     else
-        print $fg_bold[red] "Project name to likh lo"
+        print $fg_bold[red] "Oh! you missed to write project name"
         return 0
     fi # closing statement of if-else block
     cd "$1"
